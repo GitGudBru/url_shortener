@@ -1,10 +1,10 @@
 class Url < ApplicationRecord
 	# This is Sinatra! Remember to create a migration!
-	before_create :shortener, :is_url_valid
+	before_create :shorten, :is_url_valid
 	validates :long_url, :presence => true
 	validate :is_url_valid
 	#to shorten long url to short version, randomize 6 characters.
-	def shortener
+	def shorten
 		characters = [*"0".."9", *"A".."Z", *"a".."z"]
 
 		@short_url = (0..6).map{characters.sample}.join
